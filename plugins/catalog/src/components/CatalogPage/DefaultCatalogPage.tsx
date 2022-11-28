@@ -41,6 +41,7 @@ import { createComponentRouteRef } from '../../routes';
 import { CatalogTable, CatalogTableRow } from '../CatalogTable';
 import { CatalogKindHeader } from '../CatalogKindHeader';
 import { useCatalogPluginOptions } from '../../options';
+import { useTranslation } from 'react-i18next'
 
 /**
  * Props for root catalog pages.
@@ -57,6 +58,8 @@ export interface DefaultCatalogPageProps {
 }
 
 export function DefaultCatalogPage(props: DefaultCatalogPageProps) {
+  const { t } = useTranslation(["catalog"])
+
   const {
     columns,
     actions,
@@ -72,7 +75,7 @@ export function DefaultCatalogPage(props: DefaultCatalogPageProps) {
   const { createButtonTitle } = useCatalogPluginOptions();
 
   return (
-    <PageWithHeader title={`${orgName} Catalog`} themeId="home">
+    <PageWithHeader title={`${orgName} ${t('name')}`} themeId="home">
       <EntityListProvider>
         <Content>
           <ContentHeader

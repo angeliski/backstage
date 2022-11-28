@@ -82,6 +82,8 @@ import { ApiRegistry } from '../apis/system/ApiRegistry';
 import { resolveRouteBindings } from './resolveRouteBindings';
 import { BackstageRouteObject } from '../routing/types';
 import { isReactRouterBeta } from './isReactRouterBeta';
+import i18n, {Resource} from 'i18next';
+import { initReactI18next } from 'react-i18next';
 
 type CompatiblePlugin =
   | BackstagePlugin
@@ -254,6 +256,26 @@ export class AppManager implements BackstageApp {
         //               collection and then make sure we initialize things afterwards.
         result.collectedPlugins.forEach(plugin => this.plugins.add(plugin));
         this.verifyPlugins(this.plugins);
+        const resources = {} as Resource
+        this.plugins.forEach(plugin => {
+          const namespace = plugin.getId()
+          try {
+            const locale = plugin.getLocale() as Resource
+            resources[namespace] = locale
+          }catch (e){
+            console.log(namespace, plugin, e)
+          }
+
+        })
+
+        i18n
+          .use(initReactI18next)
+          .init({
+            resources,
+            lng: "en",
+            fallbackLng: 'en',
+            debug: true,
+          });
 
         // Initialize APIs once all plugins are available
         this.getApiHolder();

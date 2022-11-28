@@ -100,8 +100,7 @@ describe('Integration Test', () => {
   const plugin2 = createPlugin({
     id: 'plugin2',
   });
-
-  const HiddenComponent = plugin2.provide(
+z  const HiddenComponent = plugin2.provide(
     createRoutableExtension({
       name: 'HiddenComponent',
       component: () => Promise.resolve(() => <div />),

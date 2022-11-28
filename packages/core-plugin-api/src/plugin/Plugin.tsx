@@ -73,6 +73,10 @@ export class PluginImpl<
     }
   }
 
+  getLocale(): any{
+    return this.config.locale
+  }
+
   getPluginOptions(): {} {
     if (this.config.__experimentalConfigure && !this.options) {
       this.options = this.config.__experimentalConfigure();

@@ -81,6 +81,11 @@ export const catalogPlugin = createPlugin({
     };
     return { ...defaultOptions, ...options };
   },
+  locale: {
+    en: {
+        name: "works from inside"
+    }
+  }
 });
 
 /** @public */

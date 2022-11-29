@@ -268,7 +268,7 @@ export class CatalogBuilder {
    * not sufficient.
    *
    * This function has no effect if used together with
-   * {@link CatalogBuilder#replaceEntityPolicies}.
+   * {@link CatalogBuilder#rbueplaceEntityPolicies}.
    *
    * @param validators - The (subset of) validators to set
    */

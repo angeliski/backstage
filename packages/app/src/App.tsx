@@ -109,6 +109,13 @@ import { TwoColumnLayout } from './components/scaffolder/customScaffolderLayouts
 import { ScoreBoardPage } from '@oriflame/backstage-plugin-score-card';
 
 const app = createApp({
+  locale: {
+    en: {
+      catalog: {
+        day: "from both places"
+      }
+    }
+  },
   apis,
   plugins: Object.values(plugins),
   icons: {

@@ -62,6 +62,7 @@ export function createApp(
  * @public
  */
 export type OptionalAppOptions = {
+  locale?: any
   /**
    * A set of icons to override the default icons with.
    *

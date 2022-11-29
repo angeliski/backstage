@@ -182,6 +182,7 @@ export type AppRouteBinder = <
  * @public
  */
 export type AppOptions = {
+  locale?:any
   /**
    * A collection of ApiFactories to register in the application to either
    * add new ones, or override factories provided by default or by plugins.

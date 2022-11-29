@@ -84,6 +84,7 @@ import { BackstageRouteObject } from '../routing/types';
 import { isReactRouterBeta } from './isReactRouterBeta';
 import i18n, {Resource} from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import lodash from "lodash";
 
 type CompatiblePlugin =
   | BackstagePlugin
@@ -193,6 +194,7 @@ export class AppManager implements BackstageApp {
   private readonly configLoader?: AppConfigLoader;
   private readonly defaultApis: Iterable<AnyApiFactory>;
   private readonly bindRoutes: AppOptions['bindRoutes'];
+  private readonly locale: any;
 
   private readonly appIdentityProxy = new AppIdentityProxy();
   private readonly apiFactoryRegistry: ApiFactoryRegistry;
@@ -207,6 +209,7 @@ export class AppManager implements BackstageApp {
     this.defaultApis = options.defaultApis ?? [];
     this.bindRoutes = options.bindRoutes;
     this.apiFactoryRegistry = new ApiFactoryRegistry();
+    this.locale = options.locale || {}
   }
 
   getPlugins(): BackstagePlugin[] {
@@ -256,17 +259,34 @@ export class AppManager implements BackstageApp {
         //               collection and then make sure we initialize things afterwards.
         result.collectedPlugins.forEach(plugin => this.plugins.add(plugin));
         this.verifyPlugins(this.plugins);
-        const resources = {} as Resource
+        let resources = {} as Resource
         this.plugins.forEach(plugin => {
           const namespace = plugin.getId()
           try {
-            const locale = plugin.getLocale() as Resource
-            resources[namespace] = locale
+            const locale = plugin.getLocale()
+          if(locale) {
+            const langs ={}
+            Object.keys(locale).forEach((lang) => {
+              // @ts-ignore
+              langs[lang] = {}
+              // @ts-ignore
+              langs[lang][`${namespace}`] = locale[lang]
+            })
+            let resultLang = langs
+            if(this.locale){
+              console.log(langs, this.locale )
+              resultLang = {}
+              lodash.merge(resultLang, langs, this.locale)
+            }
+
+            resources = resultLang as Resource
+          }
           }catch (e){
             console.log(namespace, plugin, e)
           }
 
         })
+
 
         i18n
           .use(initReactI18next)

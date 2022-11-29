@@ -83,7 +83,8 @@ export const catalogPlugin = createPlugin({
   },
   locale: {
     en: {
-        name: "works from inside"
+        name: "works",
+        day: "only from insides"
     }
   }
 });

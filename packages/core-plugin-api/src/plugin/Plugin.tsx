@@ -23,6 +23,7 @@ import {
   PluginFeatureFlagConfig,
 } from './types';
 import { AnyApiFactory } from '../apis';
+import {Resource} from "i18next";
 
 /**
  * @internal
@@ -73,7 +74,7 @@ export class PluginImpl<
     }
   }
 
-  getLocale(): any{
+  getLocale(): Resource | undefined {
     return this.config.locale
   }
 

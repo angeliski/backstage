@@ -16,6 +16,7 @@
 
 import { RouteRef, SubRouteRef, ExternalRouteRef } from '../routing';
 import { AnyApiFactory } from '../apis';
+import {Resource} from "i18next";
 
 /**
  * Plugin extension type.
@@ -64,7 +65,7 @@ export type BackstagePlugin<
   routes: Routes;
   externalRoutes: ExternalRoutes;
   __experimentalReconfigure(options: PluginInputOptions): void;
-  getLocale(): any
+  getLocale(): Resource | undefined
 };
 
 /**
@@ -93,7 +94,7 @@ export type PluginConfig<
   externalRoutes?: ExternalRoutes;
   featureFlags?: PluginFeatureFlagConfig[];
   __experimentalConfigure?(options?: PluginInputOptions): {};
-  locale?: any
+  locale?: Resource | undefined
 };
 
 /**

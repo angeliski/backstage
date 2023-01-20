@@ -273,14 +273,17 @@ export class AppManager implements BackstageApp {
           }
         })
 
-
         i18n
           .use(resourcesToBackend( (language:string, namespace:string) => {
-            console.log(language, namespace, resources)
+            console.log("Loading from plugin")
             const pluginLocaleLoader = resources.get(namespace);
             if(pluginLocaleLoader)  {
               console.log('found', pluginLocaleLoader)
-              return pluginLocaleLoader(language)
+              return pluginLocaleLoader(language).then((r:any)=> {
+                let merge = lodash.merge({},r.default,this.locale[language][namespace]);
+                console.log('merged',this.locale[language][namespace], r.default, merge)
+                return merge
+              })
             }
 
             return Promise.reject('error')

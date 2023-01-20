@@ -112,7 +112,7 @@ const app = createApp({
   locale: {
     en: {
       catalog: {
-        day: "from both places"
+        description: "from both places"
       }
     }
   },

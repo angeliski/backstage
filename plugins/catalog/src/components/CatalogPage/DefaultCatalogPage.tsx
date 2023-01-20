@@ -75,7 +75,7 @@ export function DefaultCatalogPage(props: DefaultCatalogPageProps) {
   const { createButtonTitle } = useCatalogPluginOptions();
 
   return (
-    <PageWithHeader title={`${orgName} ${t('name')} `} themeId="home">
+    <PageWithHeader title={`${orgName} ${t('name')} | ${t('description')}`} themeId="home">
       <EntityListProvider>
         <Content>
           <ContentHeader

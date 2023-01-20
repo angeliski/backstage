@@ -236,6 +236,7 @@ export async function getOrganizationTeams(
   );
 
   return { groups };
+
 }
 
 export async function getOrganizationRepositories(

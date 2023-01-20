@@ -38,6 +38,7 @@
     "@backstage/version-bridge": "workspace:^",
     "@types/prop-types": "^15.7.3",
     "i18next": "^22.0.6",
+    "i18next-resources-to-backend": "^1.1.1",
     "prop-types": "^15.7.2",
     "react-i18next": "^12.0.0",
     "react-use": "^17.2.4",

@@ -74,8 +74,8 @@ export class PluginImpl<
     }
   }
 
-  getLocale(): Resource | undefined {
-    return this.config.locale
+  getLocale(): (language: string) => Promise<Resource> {
+    return this.config.locale ?? (() => Promise.resolve({}))
   }
 
   getPluginOptions(): {} {

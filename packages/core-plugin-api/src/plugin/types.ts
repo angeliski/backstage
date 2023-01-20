@@ -65,7 +65,7 @@ export type BackstagePlugin<
   routes: Routes;
   externalRoutes: ExternalRoutes;
   __experimentalReconfigure(options: PluginInputOptions): void;
-  getLocale(): Resource | undefined
+  getLocale(): (language: string) => Promise<Resource>
 };
 
 /**
@@ -94,7 +94,7 @@ export type PluginConfig<
   externalRoutes?: ExternalRoutes;
   featureFlags?: PluginFeatureFlagConfig[];
   __experimentalConfigure?(options?: PluginInputOptions): {};
-  locale?: Resource | undefined
+  locale?: (language: string) => Promise<Resource>
 };
 
 /**

@@ -84,6 +84,7 @@ import { BackstageRouteObject } from '../routing/types';
 import { isReactRouterBeta } from './isReactRouterBeta';
 import i18n, {Resource} from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import resourcesToBackend from 'i18next-resources-to-backend';
 import lodash from "lodash";
 
 type CompatiblePlugin =
@@ -259,39 +260,33 @@ export class AppManager implements BackstageApp {
         //               collection and then make sure we initialize things afterwards.
         result.collectedPlugins.forEach(plugin => this.plugins.add(plugin));
         this.verifyPlugins(this.plugins);
-        let resources = {} as Resource
+        const resources = new Map<string, (language: string) => Promise<Resource>>()
         this.plugins.forEach(plugin => {
           const namespace = plugin.getId()
           try {
             const locale = plugin.getLocale()
           if(locale) {
-            const langs ={}
-            Object.keys(locale).forEach((lang) => {
-              // @ts-ignore
-              langs[lang] = {}
-              // @ts-ignore
-              langs[lang][`${namespace}`] = locale[lang]
-            })
-            let resultLang = langs
-            if(this.locale){
-              console.log(langs, this.locale )
-              resultLang = {}
-              lodash.merge(resultLang, langs, this.locale)
-            }
-
-            resources = resultLang as Resource
+            resources.set(namespace, locale)
           }
           }catch (e){
             console.log(namespace, plugin, e)
           }
-
         })
 
 
         i18n
+          .use(resourcesToBackend( (language:string, namespace:string) => {
+            console.log(language, namespace, resources)
+            const pluginLocaleLoader = resources.get(namespace);
+            if(pluginLocaleLoader)  {
+              console.log('found', pluginLocaleLoader)
+              return pluginLocaleLoader(language)
+            }
+
+            return Promise.reject('error')
+          } ))
           .use(initReactI18next)
           .init({
-            resources,
             lng: "en",
             fallbackLng: 'en',
             debug: true,

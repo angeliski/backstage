@@ -2819,6 +2819,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.20.6":
+  version: 7.20.7
+  resolution: "@babel/runtime@npm:7.20.7"
+  dependencies:
+    regenerator-runtime: ^0.13.11
+  checksum: 4629ce5c46f06cca9cfb9b7fc00d48003335a809888e2b91ec2069a2dcfbfef738480cff32ba81e0b7c290f8918e5c22ddcf2b710001464ee84ba62c7e32a3a3
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.18.10, @babel/template@npm:^7.18.6, @babel/template@npm:^7.3.3":
   version: 7.18.10
   resolution: "@babel/template@npm:7.18.10"
@@ -3350,6 +3359,7 @@ __metadata:
     "@types/zen-observable": ^0.8.0
     cross-fetch: ^3.1.5
     i18next: ^22.0.6
+    i18next-resources-to-backend: ^1.1.1
     msw: ^0.49.0
     prop-types: ^15.7.2
     react-i18next: ^12.0.0
@@ -23843,6 +23853,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"i18next-resources-to-backend@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "i18next-resources-to-backend@npm:1.1.1"
+  dependencies:
+    "@babel/runtime": ^7.20.6
+  checksum: d842ed0bef35b9460d0cbea254e0f918f74d496d9db161f071b4b682cf77ef9ded507a1c47aa48b9dd6d8db29bff94eb099005abe3dceec6a203d78182b2f153
+  languageName: node
+  linkType: hard
+
 "i18next@npm:^22.0.6":
   version: 22.0.6
   resolution: "i18next@npm:22.0.6"
@@ -32779,7 +32798,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"regenerator-runtime@npm:^0.13.10":
+"regenerator-runtime@npm:^0.13.10, regenerator-runtime@npm:^0.13.11":
   version: 0.13.11
   resolution: "regenerator-runtime@npm:0.13.11"
   checksum: 27481628d22a1c4e3ff551096a683b424242a216fee44685467307f14d58020af1e19660bf2e26064de946bad7eff28950eae9f8209d55723e2d9351e632bbb4

@@ -75,7 +75,7 @@ export function DefaultCatalogPage(props: DefaultCatalogPageProps) {
   const { createButtonTitle } = useCatalogPluginOptions();
 
   return (
-    <PageWithHeader title={`${orgName} ${t('name')} ${t('day')}`} themeId="home">
+    <PageWithHeader title={`${orgName} ${t('name')} `} themeId="home">
       <EntityListProvider>
         <Content>
           <ContentHeader
@@ -85,7 +85,7 @@ export function DefaultCatalogPage(props: DefaultCatalogPageProps) {
               title={createButtonTitle}
               to={createComponentLink && createComponentLink()}
             />
-            <SupportButton>All your software catalog entities</SupportButton>
+            <SupportButton>{t('description')}</SupportButton>
           </ContentHeader>
           <CatalogFilterLayout>
             <CatalogFilterLayout.Filters>

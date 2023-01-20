@@ -81,12 +81,10 @@ export const catalogPlugin = createPlugin({
     };
     return { ...defaultOptions, ...options };
   },
-  locale: {
-    en: {
-        name: "works",
-        day: "only from insides"
-    }
-  }
+  locale: (language) => {
+    console.log('Received', language)
+    return import(`./locales/${language}.json`)
+  },
 });
 
 /** @public */

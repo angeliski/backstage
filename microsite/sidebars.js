@@ -507,6 +507,7 @@ module.exports = {
       'tutorials/package-role-migration',
       'tutorials/migrating-away-from-core',
       'tutorials/configuring-plugin-databases',
+      'tutorials/manual-knex-rollback',
       'tutorials/switching-sqlite-postgres',
       'tutorials/using-backstage-proxy-within-plugin',
       'tutorials/yarn-migration',
